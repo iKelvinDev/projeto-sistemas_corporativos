@@ -12,7 +12,7 @@ import br.edu.ifrn.vendasestoque.domain.produto.Produto;
 import br.edu.ifrn.vendasestoque.repository.ProdutoRepository;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("produtos")
 public class ProdutoController {
 
     @Autowired

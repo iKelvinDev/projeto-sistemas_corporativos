@@ -27,4 +27,8 @@ public class Fabricante {
 
     @NotBlank
     private String nome;
+
+    //Caso necessário devolver produtos, seria com esta anotação
+    //@OneToMany(mappedBy = "fabricante")
+    //List<Produto> produtos;
 }
