@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -44,7 +45,20 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+    
     @ManyToOne
     @JoinColumn(name = "fabricante_id")
     private Fabricante fabricante;
+
+    private boolean ativo;
+
+    public Produto(@Valid ProdutoRequestDTO, produtoDTO) {
+        this.nome = produtoDTO.nome();
+        this.descricao = produtoDTO.descricao();
+        this.quantidadeEstoque = produtoDTO.quantidadeEstoque();
+        this.preco = produtoDTO.preco();
+        this.categoria = produtoDTO.categoria();
+        this.fabricante = produtoDTO.fabricante();
+    }
+
 }
