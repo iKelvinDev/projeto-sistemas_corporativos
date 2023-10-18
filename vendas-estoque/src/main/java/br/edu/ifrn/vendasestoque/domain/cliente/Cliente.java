@@ -1,5 +1,7 @@
-package br.edu.ifrn.vendasestoque.domain.categoria;
+package br.edu.ifrn.vendasestoque.domain.cliente;
 
+import br.edu.ifrn.vendasestoque.domain.endereco.Endereco;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,21 +13,20 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@Table(name="categoria")
-@Entity(name = "categoria")
-@Getter
-@Setter
+@Entity(name = "cliente")    //JPQL
+@Table(name = "cliente")     //SQL
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id")
-public class Categoria {
-
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Nome do cliente é obrigatório")
     private String nome;
+    @Embedded
+    private Endereco endereco;
 }

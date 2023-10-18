@@ -62,7 +62,8 @@ public class FornecedorController {
     @Transactional
     public ResponseEntity<Fornecedor> atualizar(@RequestBody @Valid 
     Fornecedor fornecedor){
-        Fornecedor fornecedorLocal = repository.findById(fornecedor.getId()).get();
+        Fornecedor fornecedorLocal = repository.findById(
+            fornecedor.getId()).get();
  
         fornecedorLocal.setNome(fornecedor.getNome());
 
