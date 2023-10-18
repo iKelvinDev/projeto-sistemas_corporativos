@@ -23,7 +23,7 @@ public class MovimentacaoEstoqueService {
     }
 
     @Transactional
-    void reduzirEstoque(Venda venda){
+    public void reduzirEstoque(Venda venda){
         /*
         for (int i=0;i<venda.getItensVendas().size();i++){
             venda.getItensVendas().get(i);
