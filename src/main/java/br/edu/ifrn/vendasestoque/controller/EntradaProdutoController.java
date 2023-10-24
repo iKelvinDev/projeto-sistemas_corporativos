@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.edu.ifrn.vendasestoque.Service.MovimentacaoEstoqueService;
 import br.edu.ifrn.vendasestoque.domain.entradaproduto.EntradaProduto;
 import br.edu.ifrn.vendasestoque.repository.EntradaProdutoRepository;
+import br.edu.ifrn.vendasestoque.service.MovimentacaoEstoqueService;
 import jakarta.validation.Valid;
 
 @RestController

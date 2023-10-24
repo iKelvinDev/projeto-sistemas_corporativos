@@ -1,4 +1,4 @@
-package br.edu.ifrn.vendasestoque.Service;
+package br.edu.ifrn.vendasestoque.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
