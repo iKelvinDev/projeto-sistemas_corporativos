@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +20,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.edu.ifrn.vendasestoque.domain.categoria.Categoria;
 import br.edu.ifrn.vendasestoque.repository.CategoriaRepository;
 import jakarta.validation.Valid;
-import lombok.extern.log4j.Log4j2;
 
 @RestController
-@Log4j2
 @RequestMapping("categorias")
+@PreAuthorize("hasAuthority('ROLE_USER', 'ROLE_ADMIN')")
 public class CategoriaController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class CategoriaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid Categoria categoria, 
+    public ResponseEntity<Object> cadastrar(@RequestBody @Valid Categoria categoria, 
                                             UriComponentsBuilder uriBuilder){
         Categoria categoriaLocal = repository.save(categoria);
         var uri = uriBuilder.path("/categorias/{id}").
@@ -40,7 +40,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity<Object> detalhar(@PathVariable Long id){
         var categoria = repository.getReferenceById(id);
         return ResponseEntity.ok(categoria);
     }
@@ -54,7 +54,7 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id){
+    public ResponseEntity<Object> excluir(@PathVariable Long id){
         var categoria = repository.getReferenceById(id);
         repository.delete(categoria);
         return ResponseEntity.noContent().build();
